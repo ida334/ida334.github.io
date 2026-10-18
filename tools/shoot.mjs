@@ -34,12 +34,14 @@ for (const s of shots) {
     for (const img of document.querySelectorAll('img[loading="lazy"]')) img.loading = 'eager';
     await Promise.all([...document.images].map((i) => i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; })));
   });
-  // walk the page once so lazy images render, then return to the top
+  // walk the page once so lazy images render, then return to the top (instantly: the page scrolls smoothly)
   await page.evaluate(async () => {
+    document.documentElement.style.scrollBehavior = 'auto';
     for (let y = 0; y < document.documentElement.scrollHeight; y += innerHeight * 0.8) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); }
     scrollTo(0, 0);
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
   });
-  await page.waitForTimeout(1800); // let the sunrise settle
+  await page.waitForTimeout(400); // let the index marker settle
   await page.screenshot({ path: `${OUT}/${s.name}.png`, fullPage: s.full });
   if (s.full) await page.screenshot({ path: `${OUT}/${s.name}-first.png` });
   const layout = await page.evaluate(() => {
@@ -50,8 +52,8 @@ for (const s of shots) {
       if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflow !== 'visible') clipped.push(el.textContent.trim().slice(0, 40));
     }
     const fonts = [...document.fonts].filter((f) => f.status === 'loaded').map((f) => `${f.family} ${f.weight}`);
-    const nav = document.querySelector('.stairwell').getBoundingClientRect();
-    const firstShutter = document.querySelector('.roof .shutter').getBoundingClientRect();
+    const nav = document.querySelector('.index').getBoundingClientRect();
+    const firstShutter = document.querySelector('.masthead .btn').getBoundingClientRect();
     return { overflowX, clipped, fonts, nav: [Math.round(nav.left), Math.round(nav.top), Math.round(nav.width), Math.round(nav.height)], contactInFirstViewport: firstShutter.bottom <= innerHeight, pageHeight: doc.scrollHeight };
   });
   report.push({ shot: s.name, errors, ...layout });

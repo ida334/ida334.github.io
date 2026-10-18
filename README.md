@@ -2,7 +2,7 @@
 
 The site linked from my CV: who I am, what I have built, and how to reach me.
 
-It is drawn as one Tel Aviv "White City" building in afternoon sun. Each section is a floor, each project a balcony, and the tall stairwell window on the right is the navigation. Move the pointer and the sun moves with it; every shadow on the building follows.
+It is set as one edition of an old newspaper: a masthead, column rules, datelines and photos printed in ink on newsprint. The index column on the left marks the section you are reading; on phones it becomes the running head at the top of the page.
 
 ## Run it locally
 
@@ -20,10 +20,10 @@ Then visit http://127.0.0.1:4173/.
 | --- | --- |
 | `index.html` | The whole page |
 | `styles.css` | Layout, type and the building's materials |
-| `main.js` | Lights the current floor in the stairwell and moves the sun |
-| `assets/fonts/` | Rubik and Josefin Sans, self-hosted (SIL Open Font License, via Fontsource) |
-| `assets/img/` | Screenshots of my own projects, the terrazzo texture and the link-preview image |
-| `tools/` | Playwright scripts: capture the World Cup dashboard, take review screenshots, generate the terrazzo tile |
+| `main.js` | Marks the section you are reading in the index, and opens the index on phones |
+| `assets/fonts/` | Imbue, Source Serif 4 and Libre Franklin, self-hosted (SIL Open Font License, via Fontsource) |
+| `assets/img/` | Screenshots of my own projects, the newsprint grain and the link-preview image |
+| `tools/` | Playwright scripts: capture the World Cup dashboard, take review screenshots, check contrast |
 
 ## Tools
 

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <!-- Newsprint: fine fibre grain over faint mottling, ink-brown at low alpha so it tints whatever paper colour sits under it. -->
+  <filter id="fibre" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"/>
+    <feColorMatrix values="0 0 0 0 0.33  0 0 0 0 0.27  0 0 0 0 0.17  0.16 0 0 0 -0.035"/>
+  </filter>
+  <filter id="mottle" x="0" y="0" width="100%" height="100%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" stitchTiles="stitch"/>
+    <feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.36  0 0 0 0 0.2  0.12 0 0 0 -0.035"/>
+  </filter>
+  <rect width="320" height="320" filter="url(#mottle)"/>
+  <rect width="320" height="320" filter="url(#fibre)"/>
+</svg>
