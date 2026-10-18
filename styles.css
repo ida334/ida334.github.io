@@ -1,0 +1,506 @@
+/* The White City: one Tel Aviv building in afternoon sun.
+   Each section is a floor, each project a balcony, the stairwell window is the navigation. */
+
+@font-face {
+  font-family: "Rubik";
+  src: url("assets/fonts/rubik-latin-wght.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("assets/fonts/josefin-sans-latin-wght.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --sky: #2b7fc4;
+  --plaster: #f5f7f6;
+  --wall: #e4ebef;
+  --shadow: #557189;
+  --ink: #18222a;
+  --ink-muted: #4a5862;
+  --ink-on-glass: #b9c7d1;
+  --shutter: #2c7a69;
+  --shutter-deep: #1f5c4f;
+  --glass: #20323f;
+  --glass-hover: #2d4455;
+  --lit: #f3d58a;
+  --enamel: #2466a8;
+  --terrazzo: #d8dcd9;
+
+  --font-text: "Rubik", system-ui, sans-serif;
+  --font-sign: "Josefin Sans", "Rubik", system-ui, sans-serif;
+
+  --gutter: clamp(12px, 6.67vw, 96px);
+  --bw: min(100% - 2 * var(--gutter), 1248px);
+  --inset: clamp(20px, 2.8vw, 40px);
+  --stair: 0px;
+  --strip-h: 0px;
+  --sky-h: clamp(40px, 11.6vw, 168px);
+
+  --relief: 0.045em 0.075em 0.012em rgb(85 113 137 / 0.55);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
+  color-scheme: light;
+  scrollbar-color: var(--shadow) var(--wall);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--sky);
+  color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--font-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection { background: var(--lit); color: var(--ink); }
+
+h1, h2, h3, p, ul, figure { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
+
+.skip {
+  position: absolute; left: 12px; top: -200px; z-index: 50;
+  background: var(--ink); color: var(--plaster);
+  padding: 12px 18px; border-radius: 3px; text-decoration: none; font-weight: 500;
+}
+.skip:focus-visible { top: 12px; }
+
+/* ---------- sky and sun ---------- */
+
+.sky {
+  position: absolute; left: 0; right: 0; top: var(--strip-h);
+  height: var(--sky-h);
+  pointer-events: none; overflow: hidden;
+}
+.sun {
+  position: absolute; left: 0; top: clamp(6px, 2.4vw, 34px);
+  width: clamp(28px, 5vw, 72px); aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--lit);
+  transform: translateX(28vw);
+  will-change: transform;
+}
+
+/* ---------- the building ---------- */
+
+.building {
+  position: relative;
+  width: var(--bw);
+  margin: var(--sky-h) auto 0;
+  background: var(--wall);
+  overflow-x: clip;
+}
+/* the building's return wall, in shade */
+.building::before {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0;
+  width: clamp(10px, 2vw, 28px); background: var(--shadow);
+}
+
+.floor {
+  position: relative;
+  padding: clamp(72px, 8vw, 104px) var(--stair) clamp(72px, 8vw, 112px) 0;
+  scroll-margin-top: calc(var(--strip-h) + 8px);
+}
+/* every floor starts at a slab: a plaster band with its shadow under it */
+.floor:not(.roof)::before,
+.floor:not(.roof)::after {
+  content: ""; position: absolute; left: 0; right: 0;
+}
+.floor:not(.roof)::before { top: 0; height: 22px; background: var(--plaster); }
+.floor:not(.roof)::after { top: 22px; height: 10px; background: var(--shadow); }
+
+.relief { text-shadow: var(--relief); }
+
+.sign {
+  margin: 0 0 clamp(14px, 1.8vw, 22px) var(--inset);
+  font: 700 clamp(3rem, 4.2vw + 1rem, 5.5rem)/1 var(--font-sign);
+  letter-spacing: 0.05em;
+}
+.floor-note {
+  margin: 0 0 clamp(44px, 5vw, 72px) var(--inset);
+  max-width: 46rem;
+  padding-right: var(--inset);
+  color: var(--ink-muted);
+  font-size: 1.125rem;
+}
+
+/* ---------- roof (first viewport) ---------- */
+
+.roof { padding-top: 0; padding-bottom: clamp(64px, 7vw, 100px); }
+.parapet {
+  position: relative;
+  margin-right: calc(-1 * var(--stair));
+  background: var(--plaster);
+  padding: clamp(18px, 2vw, 28px) var(--inset) clamp(16px, 1.8vw, 26px);
+}
+.parapet::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 100%;
+  height: 14px; background: var(--shadow);
+}
+.name {
+  font: 700 clamp(3.4rem, 9.6vw + 0.5rem, 9rem)/0.95 var(--font-sign);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-top: 0.08em;
+}
+.balconies {
+  display: flex; flex-direction: column;
+  gap: clamp(48px, 5vw, 64px);
+  padding-top: clamp(32px, 3vw, 44px);
+}
+.lead {
+  font: 500 clamp(1.25rem, 0.9vw + 0.95rem, 1.75rem)/1.3 var(--font-text);
+  letter-spacing: -0.005em;
+  max-width: 48ch;
+}
+.degree { font-size: 1.125rem; line-height: 1.45; color: var(--ink-muted); }
+.sep { color: var(--shadow); padding-inline: 0.2em; }
+
+/* ---------- balconies and their cast shadows ---------- */
+
+.balcony {
+  position: relative;
+  background: var(--plaster);
+  border-radius: 0 4rem 4rem 0;
+  padding: clamp(18px, 1.8vw, 26px) clamp(40px, 5vw, 72px) clamp(18px, 1.8vw, 26px) var(--inset);
+}
+.span-10 { width: 100%; }
+.span-8 { width: 80%; }
+.span-7 { width: 70%; }
+
+.cast {
+  position: absolute; left: 0; top: 100%;
+  width: calc(100% - 3rem);
+  height: clamp(24px, 3.4vw, 48px);
+  background: var(--shadow);
+  transform-origin: 0 0;
+  transform: skewX(16deg);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ---------- shutters: the only things painted shutter green, because you can click them ---------- */
+
+.shutters { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.shutters.stacked { flex-direction: column; align-items: flex-start; }
+.shutter {
+  display: inline-flex; align-items: center;
+  min-height: 52px; padding: 0 1.55em;
+  position: relative; isolation: isolate;
+  background-color: var(--shutter);
+  color: var(--plaster);
+  font: 500 1.0625rem/1.2 var(--font-text);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background-color 160ms ease, transform 160ms var(--ease-out);
+}
+.shutter::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: url("assets/img/louvre.svg") 0 5px / 8px 7px repeat;
+  border-radius: inherit; pointer-events: none;
+}
+.shutter:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .shutter:hover { background-color: var(--shutter-deep); }
+}
+
+/* ---------- projects ---------- */
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: clamp(28px, 3vw, 48px);
+  padding: clamp(28px, 3.2vw, 46px) clamp(44px, 5vw, 72px) clamp(28px, 3.2vw, 46px) var(--inset);
+  margin-bottom: clamp(80px, 8vw, 112px);
+}
+.project.mirror { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); }
+.project.mirror .window { order: -1; }
+.project .cast { height: clamp(30px, 3.6vw, 52px); }
+
+.copy > * + * { margin-top: 18px; }
+.copy h3 {
+  font: 600 clamp(1.75rem, 1.2vw + 1.2rem, 2.5rem)/1.12 var(--font-text);
+  letter-spacing: -0.012em;
+}
+.status {
+  display: flex; align-items: center; gap: 10px;
+  font: 500 0.9375rem/1 var(--font-text); letter-spacing: 0.02em;
+}
+.status svg { width: 84px; height: 14px; flex: none; overflow: visible; }
+.status line { stroke: var(--ink); stroke-width: 2; }
+.status .bar { stroke-width: 3; }
+.status circle { fill: var(--ink); }
+.status .ring { fill: none; stroke: var(--ink); stroke-width: 2; }
+
+.facts { list-style: none; padding: 0; display: grid; gap: 10px; }
+.facts li, .role-points li { position: relative; padding-left: 22px; }
+.facts li::before, .role-points li::before {
+  content: ""; position: absolute; left: 0; top: 0.76em;
+  width: 12px; height: 2px; background: var(--ink);
+}
+.source a {
+  color: var(--shutter-deep); font-weight: 500;
+  text-decoration-thickness: 1.5px; text-underline-offset: 0.22em;
+}
+.out { width: 0.62em; height: 0.62em; margin-left: 0.35em; fill: none; stroke: currentColor; stroke-width: 1.7; }
+.stack { color: var(--ink-muted); font-size: 0.9375rem; }
+.source-note { margin: clamp(28px, 3vw, 44px) 0 0 var(--inset); padding-right: var(--inset); color: var(--ink-muted); font-size: 0.875rem; }
+.copy .shutters { padding-top: 6px; }
+
+.window { display: flex; flex-direction: column; gap: 10px; }
+.glass {
+  position: relative; flex: 1;
+  min-height: clamp(300px, 30vw, 440px);
+  background: var(--glass);
+  overflow: hidden;
+}
+/* the deep window reveal: the sun throws the top and left edges into shade */
+.glass::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset calc(var(--sun-x, 1) * 14px) 14px 3px -3px rgb(85 113 137 / 0.75);
+}
+.glass > img:only-child {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 32%;
+}
+.glass-pair {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(16px, 2vw, 28px);
+  padding: clamp(24px, 2.6vw, 36px);
+}
+.glass-pair .phone { width: auto; height: clamp(260px, 27vw, 400px); border-radius: 22px; }
+.glass-pair .widget { width: min(52%, 300px); border-radius: 18px; }
+figcaption { font-size: 0.8125rem; line-height: 1.4; color: var(--ink-muted); }
+
+.project.short {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+}
+.project.short .copy h3 { font-size: clamp(1.375rem, 0.8vw + 1.1rem, 1.75rem); }
+.hk-text { font-size: 1rem; max-width: 40rem; }
+
+/* ---------- experience: ribbon windows ---------- */
+
+.role { margin: 0 0 clamp(56px, 6vw, 84px) var(--inset); --years-col: clamp(8.5rem, 20%, 14rem); }
+.role:last-child { margin-bottom: 0; }
+.ribbon {
+  position: relative;
+  display: grid; grid-template-columns: var(--years-col) minmax(0, 1fr);
+  align-items: center; column-gap: 24px;
+  background: var(--glass);
+  padding: 26px clamp(20px, 2.6vw, 34px) 24px;
+}
+.ribbon::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0;
+  height: 12px; background: rgb(85 113 137 / 0.62);
+}
+.years {
+  font: 700 clamp(1.875rem, 1.6vw + 1rem, 2.5rem)/1 var(--font-sign);
+  letter-spacing: 0.04em; color: var(--lit);
+  font-variant-numeric: tabular-nums lining-nums;
+  padding-top: 0.12em;
+}
+.ribbon h3 { font: 600 clamp(1.125rem, 0.8vw + 0.8rem, 1.5rem)/1.25 var(--font-text); color: var(--plaster); }
+.org { display: block; margin-top: 4px; font-weight: 400; font-size: 0.75em; color: var(--ink-on-glass); }
+@media (min-width: 1080px) {
+  .org { display: inline; margin: 0 0 0 0.5em; font-size: 0.8em; }
+  .org::before { content: "· "; color: var(--ink-on-glass); }
+}
+.role-points {
+  list-style: none; display: grid; gap: 12px;
+  padding: 26px var(--inset) 0 calc(var(--years-col) + 24px + clamp(20px, 2.6vw, 34px));
+  max-width: 64rem;
+}
+
+/* ---------- study: enamel number plates ---------- */
+
+.plates {
+  list-style: none; padding: 0;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 16px; margin: 0 var(--inset);
+}
+.enamel {
+  display: block;
+  padding: 0.42em 0 0.3em;
+  background: var(--enamel); color: var(--plaster);
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 3px var(--plaster), calc(var(--sun-x, 1) * 6px) 8px 3px rgb(85 113 137 / 0.6);
+  font: 700 clamp(2.5rem, 2.4vw + 1.2rem, 4rem)/1 var(--font-sign);
+  font-variant-numeric: tabular-nums lining-nums;
+  text-align: center;
+}
+.course { display: block; margin-top: 16px; font-size: 0.9375rem; line-height: 1.4; color: var(--ink-muted); }
+
+/* ---------- skills ---------- */
+
+.skill-columns {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(28px, 3.2vw, 44px); margin: clamp(28px, 3vw, 44px) var(--inset) 0;
+}
+.skill-columns h3 {
+  font: 600 1.375rem/1.2 var(--font-text);
+  padding-bottom: 10px; margin-bottom: 14px;
+  border-bottom: 2px solid var(--ink);
+}
+.skill-columns ul { list-style: none; padding: 0; line-height: 1.95; }
+.languages { margin-top: clamp(40px, 4.4vw, 60px); margin-bottom: 0; }
+
+/* ---------- contact: the lobby letterbox, the pilotis, the ground ---------- */
+
+.contact { padding-bottom: 0; }
+.contact-grid {
+  display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+  gap: clamp(36px, 7vw, 96px); align-items: start;
+  margin: clamp(28px, 3vw, 44px) 0 0 var(--inset);
+}
+.letterbox {
+  position: relative; aspect-ratio: 7 / 5;
+  background: var(--plaster); border-radius: 6px;
+}
+.slot {
+  position: absolute; left: 10%; right: 10%; top: 13%; height: 22px;
+  background: var(--glass); border-radius: 11px;
+  box-shadow: inset 0 6px 1px -1px rgb(85 113 137 / 0.8);
+}
+.nameplate {
+  position: absolute; left: 50%; top: 56%; transform: translate(-50%, -50%);
+  background: var(--lit); color: var(--ink);
+  padding: 0.62em 1em 0.5em; border-radius: 4px;
+  font: 700 clamp(1.25rem, 1vw + 0.9rem, 1.625rem)/1 var(--font-sign);
+  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+}
+.letterbox .cast { width: calc(100% - 1rem); height: clamp(24px, 2.6vw, 34px); }
+.contact-copy .lead { margin-bottom: 26px; }
+
+.pilotis {
+  display: flex; justify-content: space-around;
+  height: clamp(96px, 10vw, 140px);
+  margin: clamp(80px, 9vw, 120px) calc(-1 * var(--stair)) 0 0;
+  background: var(--shadow);
+}
+.pilotis span {
+  width: clamp(18px, 2.4vw, 32px);
+  background: linear-gradient(to right, var(--plaster) 70%, #c9d4db 70%);
+}
+
+.ground {
+  background: var(--terrazzo) url("assets/img/terrazzo.svg") 0 0 / 240px 240px;
+  padding: clamp(28px, 3vw, 40px) var(--gutter);
+  font-size: 0.9375rem;
+}
+.ground p { width: var(--bw); max-width: 100%; margin-inline: auto; padding-left: var(--inset); }
+.ground .plaque {
+  display: inline-block; padding: 8px 14px 7px;
+  background: var(--plaster); border-radius: 3px;
+  box-shadow: calc(var(--sun-x, 1) * 4px) 5px 2px rgb(85 113 137 / 0.5);
+}
+
+/* ---------- the stairwell window: navigation ---------- */
+
+.stairwell ol { list-style: none; margin: 0; padding: 0; }
+.stairwell a { text-decoration: none; transition: color 200ms ease; }
+.stairwell .pane { transition: background-color 200ms ease; }
+
+/* desktop: a tall stairwell window on the building's right side */
+@media (min-width: 1080px) {
+  :root { --stair: 15rem; }
+  .stairwell {
+    position: fixed; z-index: 20; top: var(--stair-top, 50%); transform: var(--stair-shift, translateY(-50%));
+    right: calc((100% - var(--bw)) / 2 + clamp(20px, 2.4vw, 36px));
+  }
+  .stairwell ol { display: grid; gap: 8px; padding: 8px; background: var(--plaster); }
+  .stairwell a { display: flex; align-items: center; justify-content: flex-end; gap: 12px; padding-left: 10px; color: var(--shutter-deep); }
+  .floor-name { font: 500 0.9375rem/1 var(--font-text); letter-spacing: 0.02em; }
+  .stairwell .pane {
+    display: block; width: clamp(52px, 4.6vw, 68px); height: var(--pane-h, 62px);
+    background: var(--glass);
+    box-shadow: inset calc(var(--sun-x, 1) * 6px) 0 1px -1px rgb(85 113 137 / 0.7);
+  }
+  .stairwell a[aria-current] { color: var(--ink); }
+  .stairwell a[aria-current] .floor-name { font-weight: 600; }
+  .stairwell a[aria-current] .pane { background: var(--lit); }
+  @media (hover: hover) and (pointer: fine) {
+    .stairwell a:not([aria-current]):hover .pane { background: var(--glass-hover); }
+    .stairwell a:hover .floor-name { text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1.5px; }
+  }
+}
+
+/* tablet and phone: the window turns sideways into a strip of panes */
+@media (max-width: 1079.98px) {
+  :root { --strip-h: 52px; }
+  .stairwell {
+    position: sticky; top: 0; z-index: 20;
+    height: var(--strip-h);
+    background: var(--plaster);
+    box-shadow: 0 4px 6px -2px rgb(85 113 137 / 0.35);
+  }
+  .stairwell ol {
+    display: flex; gap: 4px; height: 100%; padding: 4px;
+    overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain;
+  }
+  .stairwell ol::-webkit-scrollbar { display: none; }
+  .stairwell li { flex: 1 0 auto; }
+  .stairwell a {
+    display: grid; place-items: center; height: 100%;
+    padding: 0 12px;
+    background: var(--glass); color: var(--plaster);
+    font: 500 0.8125rem/1 var(--font-text); letter-spacing: 0.02em;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+  .stairwell a[aria-current] { background: var(--lit); color: var(--ink); font-weight: 600; }
+  .stairwell .pane { display: none; }
+  .stairwell a:focus-visible { outline-offset: -3px; outline-color: var(--lit); }
+  .stairwell a[aria-current]:focus-visible { outline-color: var(--ink); }
+
+  .span-10 { width: 94%; }
+  .span-8 { width: 84%; }
+  .span-7 { width: 76%; }
+}
+
+@media (max-width: 900px) {
+  .project, .project.mirror { grid-template-columns: minmax(0, 1fr); }
+  .project .window { order: -1; }
+  .project.short { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 16px; }
+  .plates { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 28px; }
+  .skill-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; }
+  .contact-grid { grid-template-columns: minmax(0, 1fr); margin-right: var(--inset); }
+  .letterbox { max-width: 26rem; }
+}
+
+@media (max-width: 640px) {
+  .span-10, .span-8, .span-7 { width: calc(100% - 18px); }
+  .balcony { border-radius: 0 2.5rem 2.5rem 0; padding-right: 32px; }
+  .project { padding-right: 28px; }
+  .glass { min-height: 220px; }
+  .glass-pair .phone { height: 240px; border-radius: 16px; }
+  .ribbon { grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+  .role { margin-right: var(--inset); }
+  .role-points { padding-left: 0; padding-right: 0; }
+  .plates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .skill-columns { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 20px; }
+  .floor-note { font-size: 1.0625rem; }
+}
+
+@media print {
+  .stairwell, .sky, .cast, .pilotis, .skip { display: none; }
+  body, .ground { background: #fff; }
+  .building { margin-top: 0; }
+}

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Idan Akiva · Data, AI and software</title>
+  <meta name="description" content="Idan Akiva builds data pipelines, ML models and small apps end to end, and reports honestly how well they work. B.Sc. Computer Science and B.A. Psychology, Ben-Gurion University, 2026.">
+  <meta name="theme-color" content="#2b7fc4">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Idan Akiva · Data, AI and software">
+  <meta property="og:description" content="Data pipelines, ML models and small apps, built end to end and reported honestly.">
+  <meta property="og:image" content="https://ida334.github.io/assets/img/og.jpg">
+  <meta property="og:url" content="https://ida334.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/josefin-sans-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/rubik-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#work">Skip to the work</a>
+
+  <nav class="stairwell" aria-label="Floors of this page">
+    <ol>
+      <li><a href="#roof" aria-current="location"><span class="floor-name">Roof</span><span class="pane" aria-hidden="true"></span></a></li>
+      <li><a href="#work"><span class="floor-name">Work</span><span class="pane" aria-hidden="true"></span></a></li>
+      <li><a href="#experience"><span class="floor-name">Experience</span><span class="pane" aria-hidden="true"></span></a></li>
+      <li><a href="#study"><span class="floor-name">Study</span><span class="pane" aria-hidden="true"></span></a></li>
+      <li><a href="#skills"><span class="floor-name">Skills</span><span class="pane" aria-hidden="true"></span></a></li>
+      <li><a href="#contact"><span class="floor-name">Contact</span><span class="pane" aria-hidden="true"></span></a></li>
+    </ol>
+  </nav>
+
+  <div class="sky" aria-hidden="true"><span class="sun"></span></div>
+
+  <main class="building">
+    <header class="floor roof" id="roof" data-floor>
+      <div class="parapet">
+        <h1 class="name relief">Idan Akiva</h1>
+      </div>
+      <div class="balconies">
+        <div class="balcony span-10">
+          <p class="lead">Data, AI and software. I build the pipeline, the model and the app, then report honestly how well it works.</p>
+          <span class="cast" aria-hidden="true"></span>
+        </div>
+        <div class="balcony span-8">
+          <p class="degree">B.Sc. Computer Science &amp; B.A. Psychology <span class="sep">·</span> Ben-Gurion University <span class="sep">·</span> 2026</p>
+          <span class="cast" aria-hidden="true"></span>
+        </div>
+        <div class="balcony span-7">
+          <ul class="shutters" aria-label="Contact">
+            <li><a class="shutter" href="mailto:idanakiva3@gmail.com">Email me</a></li>
+            <li><a class="shutter" href="https://www.linkedin.com/in/idan-akiva">LinkedIn</a></li>
+            <li><a class="shutter" href="https://github.com/ida334">GitHub</a></li>
+          </ul>
+          <span class="cast" aria-hidden="true"></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="floor" id="work" data-floor aria-labelledby="work-title">
+      <h2 class="sign relief" id="work-title">Work</h2>
+      <p class="floor-note">Three things I built, with the numbers and where each one comes from.</p>
+
+      <article class="balcony project span-10" aria-labelledby="wc-title">
+        <div class="copy">
+          <h3 id="wc-title">World Cup 2026 Predictor</h3>
+          <p class="status status-live"><svg viewBox="0 0 84 14" aria-hidden="true"><line x1="0" y1="7" x2="70" y2="7"/><circle cx="76" cy="7" r="6"/></svg>Live demo</p>
+          <p>Predicts every match of the 48-team 2026 World Cup, then plays the whole tournament 10,000 times to estimate each team’s chances.</p>
+          <ul class="facts">
+            <li>Cleaned 1930–2022 match data with four SQL scripts into one SQLite model.</li>
+            <li>Built 16 time-decay features and trained an XGBoost classifier on 964 matches.</li>
+            <li>57.1% ± 2.1% accuracy in 5-fold cross-validation, against a 55.7% always-home-win baseline. A small gain, reported as one.</li>
+          </ul>
+          <p class="source"><a href="https://github.com/ida334/World_cup_2026#model-details">Source: the project README<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 2 10"/></svg></a></p>
+          <p class="stack">Python · SQL · SQLite · XGBoost · Streamlit</p>
+          <ul class="shutters">
+            <li><a class="shutter" href="https://ida334-worldcup2026.streamlit.app/">Open the live demo</a></li>
+            <li><a class="shutter" href="https://github.com/ida334/World_cup_2026">Code on GitHub</a></li>
+          </ul>
+        </div>
+        <figure class="window">
+          <div class="glass">
+            <img src="assets/img/worldcup-predictions.jpg" width="1760" height="2080" loading="lazy" decoding="async"
+                 alt="The live dashboard’s 2026 Predictions page: France 14.1%, Brazil 13.2% and Germany 12.1% to win the tournament, above a bar chart of the top 20 contenders.">
+          </div>
+          <figcaption>The live dashboard, 2026 Predictions page, captured October 2026.</figcaption>
+        </figure>
+        <span class="cast" aria-hidden="true"></span>
+      </article>
+
+      <article class="balcony project mirror span-10" aria-labelledby="w2w-title">
+        <div class="copy">
+          <h3 id="w2w-title">What2Wear</h3>
+          <p class="status status-finished"><svg viewBox="0 0 84 14" aria-hidden="true"><line x1="0" y1="7" x2="70" y2="7"/><line class="bar" x1="71" y1="0" x2="71" y2="14"/></svg>Finished</p>
+          <p>An iPhone widget and app that turns the weather where you are into what to wear and what to pack.</p>
+          <ul class="facts">
+            <li>About 1,400 lines of JavaScript, running in Scriptable on the phone.</li>
+            <li>Hour-by-hour feels-like temperature and rain from the Open-Meteo API.</li>
+            <li>Trips weeks ahead fall back to the same dates over the last five years.</li>
+          </ul>
+          <p class="source"><a href="https://github.com/ida334/what2wear#how-its-built">Source: the project README<svg class="out" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h6v6M10 2 2 10"/></svg></a></p>
+          <p class="stack">JavaScript · REST API · Scriptable</p>
+          <ul class="shutters">
+            <li><a class="shutter" href="https://github.com/ida334/what2wear">Read the README</a></li>
+          </ul>
+        </div>
+        <figure class="window">
+          <div class="glass glass-pair">
+            <img class="phone" src="assets/img/what2wear-app-today.jpg" width="1050" height="2000" loading="lazy" decoding="async"
+                 alt="What2Wear’s Today screen: wear short sleeve and shorts, feels like 23 to 29 degrees until 23:00, pack nothing extra.">
+            <img class="widget" src="assets/img/what2wear-widget-medium.jpg" width="1114" height="525" loading="lazy" decoding="async"
+                 alt="The medium home screen widget: cloudy, 29 over 23 degrees, wear short sleeve and shorts, pack nothing extra.">
+          </div>
+          <figcaption>The app’s Today screen and the medium widget, from the project README.</figcaption>
+        </figure>
+        <span class="cast" aria-hidden="true"></span>
+      </article>
+
+      <article class="balcony project short span-10" aria-labelledby="hk-title">
+        <div class="copy">
+          <h3 id="hk-title">Mental Health &amp; Tech Hackathon</h3>
+          <p class="status status-closed"><svg viewBox="0 0 84 14" aria-hidden="true"><line x1="0" y1="7" x2="70" y2="7"/><circle class="ring" cx="76" cy="7" r="5.5"/></svg>No public code</p>
+        </div>
+        <p class="hk-text">Team of four, May 2025. We designed an AI-integrated hub that keeps an infant’s medical files in one place and turns doctors’ recommendations into activities at home. The organizers asked us to keep developing it.</p>
+        <span class="cast" aria-hidden="true"></span>
+      </article>
+    </section>
+
+    <section class="floor" id="experience" data-floor aria-labelledby="experience-title">
+      <h2 class="sign relief" id="experience-title">Experience</h2>
+      <p class="floor-note">Three years of production data work before university: pipelines handling hundreds of millions of data points on peak days, feeding reports used by thousands of people.</p>
+
+      <article class="role">
+        <div class="ribbon">
+          <p class="years"><time datetime="2022">2022</time>–<time datetime="2023">23</time></p>
+          <h3>Data Analyst &amp; BI Developer <span class="org">NESS Technologies</span></h3>
+        </div>
+        <ul class="role-points">
+          <li>Built automated ETL pipelines that unify data from many sources into optimized structures, relied on by senior leadership for time-critical decisions.</li>
+          <li>Turned operational requirements from cross-functional stakeholders into technical specifications and working reports.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <div class="ribbon">
+          <p class="years"><time datetime="2020">2020</time>–<time datetime="2022">22</time></p>
+          <h3>BI Developer &amp; Product Analyst <span class="org">C4I Corps, IDF</span></h3>
+        </div>
+        <ul class="role-points">
+          <li>Architected data systems that cut data retrieval and reporting work from days to minutes, earning the Chief of Staff’s Innovation Award.</li>
+          <li>Owned the data product end to end: SQL and ETL backend, data modeling, Power BI dashboards and DAX measures, user testing, rollout and support.</li>
+          <li>Built a telemetry data backend in Python, SQL and SSIS for a driver-assistance system, in a three-person team over a year and a half.</li>
+          <li>Ran A/B comparisons between solution versions and chose what to roll out from the results.</li>
+          <li>Learned SSIS and BI in weeks, then trained about seven developers and mentored juniors on database design and query optimization.</li>
+        </ul>
+      </article>
+      <p class="source-note">Figures as stated on my CV. The systems themselves are internal and not public.</p>
+    </section>
+
+    <section class="floor" id="study" data-floor aria-labelledby="study-title">
+      <h2 class="sign relief" id="study-title">Study</h2>
+      <p class="floor-note">B.Sc. Computer Science and B.A. Psychology, Ben-Gurion University of the Negev, 2023–2026. GPA 84.8. The courses I did best in:</p>
+      <ul class="plates">
+        <li><span class="enamel">98</span><span class="course">Research Methodology</span></li>
+        <li><span class="enamel">96</span><span class="course">Mathematical Applications in CS</span></li>
+        <li><span class="enamel">94</span><span class="course">Regression &amp; Multivariate Analysis</span></li>
+        <li><span class="enamel">92</span><span class="course">Statistical Inference</span></li>
+        <li><span class="enamel">86</span><span class="course">Applied Machine Learning</span></li>
+        <li><span class="enamel">86</span><span class="course">Linear Algebra</span></li>
+      </ul>
+      <p class="source-note">Grades as listed on my CV.</p>
+    </section>
+
+    <section class="floor" id="skills" data-floor aria-labelledby="skills-title">
+      <h2 class="sign relief" id="skills-title">Skills</h2>
+      <div class="skill-columns">
+        <div>
+          <h3>Data &amp; BI</h3>
+          <ul><li>SQL</li><li>ETL pipelines</li><li>Data modeling</li><li>SSIS</li><li>Power BI and DAX</li><li>SQLite</li></ul>
+        </div>
+        <div>
+          <h3>ML &amp; statistics</h3>
+          <ul><li>scikit-learn</li><li>XGBoost</li><li>pandas and NumPy</li><li>Cross-validation</li><li>Regression</li><li>Monte Carlo simulation</li><li>Jupyter</li></ul>
+        </div>
+        <div>
+          <h3>AI</h3>
+          <ul><li>LLM API integration</li><li>Claude Code</li><li>Claude</li><li>Gemini</li></ul>
+        </div>
+        <div>
+          <h3>Code &amp; tools</h3>
+          <ul><li>Python</li><li>Java</li><li>SQL</li><li>JavaScript</li><li>C and C++</li><li>Git and GitHub Actions</li><li>Streamlit</li></ul>
+        </div>
+      </div>
+      <p class="floor-note languages">Hebrew (native) · English (fluent)</p>
+    </section>
+
+    <section class="floor contact" id="contact" data-floor aria-labelledby="contact-title">
+      <h2 class="sign relief" id="contact-title">Contact</h2>
+      <div class="contact-grid">
+        <div class="letterbox" aria-hidden="true">
+          <span class="slot"></span>
+          <span class="nameplate">Idan Akiva</span>
+          <span class="cast"></span>
+        </div>
+        <div class="contact-copy">
+          <p class="lead">Email is the fastest way to reach me.</p>
+          <ul class="shutters stacked">
+            <li><a class="shutter" href="mailto:idanakiva3@gmail.com">idanakiva3@gmail.com</a></li>
+            <li><a class="shutter" href="https://www.linkedin.com/in/idan-akiva">LinkedIn</a></li>
+            <li><a class="shutter" href="https://github.com/ida334">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pilotis" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+  </main>
+
+  <footer class="ground">
+    <p><span class="plaque">© 2026 Idan Akiva. Designed in Figma, built with Claude Code.</span></p>
+  </footer>
+</body>
+</html>

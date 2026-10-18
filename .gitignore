@@ -1,0 +1,10 @@
+# dependencies
+node_modules/
+
+# working files kept on this computer only
+.impeccable/
+.claude/
+CLAUDE.md
+PRODUCT.md
+claude-setup/
+SETUP.md
