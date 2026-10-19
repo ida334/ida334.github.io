@@ -13,10 +13,12 @@
   <meta property="og:url" content="https://ida334.github.io/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/grenze-gotisch-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/imbue-latin-opsz.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/source-serif-4-latin-opsz.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/libre-franklin-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('press');</script>
   <script src="main.js" defer></script>
 </head>
 <body>
@@ -47,15 +49,53 @@
 
     <main class="paper">
       <header class="masthead" id="front" data-section>
-        <h1 class="flag">Idan Akiva</h1>
-        <p class="folio"><span>B.Sc. Computer Science &amp; B.A. Psychology</span><span class="sep" aria-hidden="true"> · </span><span>Ben-Gurion University<span class="sep" aria-hidden="true"> · </span>2026</span></p>
-        <div class="standfirst">
-          <p class="lead">Data, AI and software. I build the pipeline, the model and the app, then report honestly how well it works.</p>
-          <ul class="actions" aria-label="Contact">
-            <li><a class="btn btn-ink" href="mailto:idanakiva3@gmail.com">Email me</a></li>
-            <li><a class="btn" href="https://www.linkedin.com/in/idan-akiva">LinkedIn</a></li>
-            <li><a class="btn" href="https://github.com/ida334">GitHub</a></li>
-          </ul>
+        <div class="nameplate">
+          <aside class="ear ear-left" aria-label="The forecast">
+            <p class="ear-title">The Forecast</p>
+            <p>World Cup 2026, after 10,000 simulated tournaments: France 14.1%, Brazil 13.2%, Germany 12.1%.</p>
+          </aside>
+          <div class="flag-block" data-press="stamp">
+            <p class="flag-over" aria-hidden="true">Data · AI · Software</p>
+            <h1 class="flag">Idan Akiva</h1>
+          </div>
+          <aside class="ear ear-right" aria-label="Edition">
+            <p class="ear-box">Class of 2026 Edition</p>
+          </aside>
+        </div>
+        <p class="folio"><span>B.Sc. Computer Science &amp; B.A. Psychology</span><span class="sep" aria-hidden="true"> · </span><span>Ben-Gurion University<span class="sep" aria-hidden="true"> · </span>2026</span><span class="sep" aria-hidden="true"> · </span><a class="price" href="mailto:idanakiva3@gmail.com">Price: one email</a></p>
+
+        <h2 class="banner" data-press="ink">
+          <span class="banner-line">Akiva Builds the Pipeline, the Model and the App;</span>
+          <span class="banner-line">Reports Honestly How Well Each One Works</span>
+        </h2>
+
+        <div class="front">
+          <article class="front-col front-left" data-press="col">
+            <h3 class="deck-italic">Data, AI and Software</h3>
+            <p class="deck-condensed">Dual Degree in Computer Science and Psychology at Ben-Gurion University, 2026</p>
+            <p class="lead">Data, AI and software. I build the pipeline, the model and the app, then report honestly how well it works.</p>
+            <ul class="actions" aria-label="Contact">
+              <li><a class="btn btn-ink" href="mailto:idanakiva3@gmail.com">Email me</a></li>
+              <li><a class="btn" href="https://www.linkedin.com/in/idan-akiva">LinkedIn</a></li>
+              <li><a class="btn" href="https://github.com/ida334">GitHub</a></li>
+            </ul>
+          </article>
+
+          <figure class="front-photo photo" data-press="col">
+            <figcaption class="photo-head">“France 14.1%, Brazil 13.2%, Germany 12.1%”</figcaption>
+            <div class="plate plate-crop">
+              <span class="print"><img src="assets/img/worldcup-predictions.jpg" width="1760" height="2080" decoding="async"
+                   alt="The live dashboard’s 2026 Predictions page: France 14.1%, Brazil 13.2% and Germany 12.1% to win the tournament, above a bar chart of the top 20 contenders."></span>
+            </div>
+            <p class="photo-credit">The live dashboard of the World Cup 2026 Predictor, 2026 Predictions page, captured October 2026. <span class="loupe-hint"></span></p>
+          </figure>
+
+          <article class="front-col front-right" data-press="col">
+            <h3 class="deck-italic">Three Years of Production Data Work</h3>
+            <p class="deck-condensed">Pipelines Handling Hundreds of Millions of Data Points on Peak Days</p>
+            <p class="front-body">Before university: BI Developer and Product Analyst in the C4I Corps, IDF, then Data Analyst and BI Developer at NESS Technologies. His data systems cut reporting work from days to minutes and earned the Chief of Staff’s Innovation Award.</p>
+            <p class="jump"><a href="#experience">Continued in Experience</a></p>
+          </article>
         </div>
       </header>
 
@@ -65,7 +105,7 @@
           <p class="section-deck">Three things I built, with the numbers and where each one comes from.</p>
         </header>
 
-        <article class="story" aria-labelledby="wc-title">
+        <article class="story story-solo" aria-labelledby="wc-title">
           <h3 class="headline" id="wc-title">World Cup 2026 Predictor</h3>
           <div class="story-text">
             <p class="lede"><span class="dateline">Live demo —</span> Predicts every match of the 48-team 2026 World Cup, then plays the whole tournament 10,000 times to estimate each team’s chances.</p>
@@ -81,13 +121,10 @@
               <li><a class="btn" href="https://github.com/ida334/World_cup_2026">Code on GitHub</a></li>
             </ul>
           </div>
-          <figure class="photo">
-            <div class="plate plate-crop">
-              <img src="assets/img/worldcup-predictions.jpg" width="1760" height="2080" loading="lazy" decoding="async"
-                   alt="The live dashboard’s 2026 Predictions page: France 14.1%, Brazil 13.2% and Germany 12.1% to win the tournament, above a bar chart of the top 20 contenders.">
-            </div>
-            <figcaption>The live dashboard, 2026 Predictions page, captured October 2026.</figcaption>
-          </figure>
+          <aside class="pull" aria-hidden="true">
+            <p class="pull-quote">“A small gain, reported as one.”</p>
+            <p class="pull-note">The dashboard is pictured on the front page.</p>
+          </aside>
         </article>
 
         <article class="story mirror" aria-labelledby="w2w-title">
@@ -107,12 +144,12 @@
           </div>
           <figure class="photo">
             <div class="plate plate-pair">
-              <img class="phone" src="assets/img/what2wear-app-today.jpg" width="1050" height="2000" loading="lazy" decoding="async"
-                   alt="What2Wear’s Today screen: wear short sleeve and shorts, feels like 23 to 29 degrees until 23:00, pack nothing extra.">
-              <img class="widget" src="assets/img/what2wear-widget-medium.jpg" width="1114" height="525" loading="lazy" decoding="async"
-                   alt="The medium home screen widget: cloudy, 29 over 23 degrees, wear short sleeve and shorts, pack nothing extra.">
+              <span class="print phone"><img src="assets/img/what2wear-app-today.jpg" width="1050" height="2000" loading="lazy" decoding="async"
+                   alt="What2Wear’s Today screen: wear short sleeve and shorts, feels like 23 to 29 degrees until 23:00, pack nothing extra."></span>
+              <span class="print widget"><img src="assets/img/what2wear-widget-medium.jpg" width="1114" height="525" loading="lazy" decoding="async"
+                   alt="The medium home screen widget: cloudy, 29 over 23 degrees, wear short sleeve and shorts, pack nothing extra."></span>
             </div>
-            <figcaption>The app’s Today screen and the medium widget, from the project README.</figcaption>
+            <figcaption class="photo-credit">The app’s Today screen and the medium widget, from the project README. <span class="loupe-hint"></span></figcaption>
           </figure>
         </article>
 
@@ -213,5 +250,14 @@
       </footer>
     </main>
   </div>
+  <dialog class="viewer" aria-labelledby="viewer-caption">
+    <div class="viewer-sheet">
+      <button class="viewer-close" type="button" aria-label="Close the photo">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3 3 13"/></svg>
+      </button>
+      <div class="viewer-images"></div>
+      <p class="viewer-caption" id="viewer-caption"></p>
+    </div>
+  </dialog>
 </body>
 </html>
